@@ -27,7 +27,7 @@ import kotlinx.coroutines.withContext
 
 class MainActivity2 : AppCompatActivity()  {
 
-    private val API: String = "9940c6b52513697e07e091ec423f83f4"
+    private val API = BuildConfig.API_KEY
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -150,6 +150,7 @@ class MainActivity2 : AppCompatActivity()  {
 
                 val date = sortedDates.getOrNull(i) ?: continue
                 val weathers = dateWeatherDescriptions[date] ?: continue
+                val mostFrequentWeather = weathers.groupingBy { it }.eachCount().maxByOrNull { it.value }?.key ?: "Sem dados"
                 val temps = dateTemps[date] ?: continue
                 val min = temps.minOrNull()?.toInt() ?: 0
                 val max = temps.maxOrNull()?.toInt() ?: 0
@@ -159,14 +160,14 @@ class MainActivity2 : AppCompatActivity()  {
 
                 val idDay = resources.getIdentifier("day$i", "id", packageName)
                 val idDate = resources.getIdentifier("date$i", "id", packageName)
-                val idWeather = resources.getIdentifier("wind$i", "id", packageName)
+                val idWeather = resources.getIdentifier("status$i", "id", packageName)
                 val idMin = resources.getIdentifier("temp_min$i", "id", packageName)
                 val idMax = resources.getIdentifier("temp_max$i", "id", packageName)
                 val idWind = resources.getIdentifier("wind$i", "id", packageName)
 
                 findViewById<TextView>(idDay)?.text = dayFormat.replaceFirstChar { it.uppercase() }
                 findViewById<TextView>(idDate)?.text = dateFormat
-                findViewById<TextView>(idWeather)?.text = "$weathers"
+                findViewById<TextView>(idWeather)?.text = mostFrequentWeather
                 findViewById<TextView>(idMin)?.text = "$min° Min"
                 findViewById<TextView>(idMax)?.text = "$max° Max"
                 findViewById<TextView>(idWind)?.text = formattedWind

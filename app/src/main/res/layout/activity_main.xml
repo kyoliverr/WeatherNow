@@ -199,10 +199,12 @@
                         android:layout_width="150sp"
                         android:layout_height="wrap_content">
                     </TextView>
-                    <Space
+                    <ImageView
+                        android:id="@+id/climateIcon0"
+                        android:src="@drawable/d03"
                         android:layout_width="28dp"
-                        android:layout_height="match_parent">
-                    </Space>
+                        android:layout_height="28dp">
+                    </ImageView>
                     <TextView
                         android:id="@+id/temp_min0"
                         android:text="12° Min"
@@ -237,10 +239,12 @@
                         android:layout_width="150sp"
                         android:layout_height="wrap_content">
                     </TextView>
-                    <Space
+                    <ImageView
+                        android:id="@+id/climateIcon1"
+                        android:src="@drawable/d01"
                         android:layout_width="28dp"
-                        android:layout_height="match_parent">
-                    </Space>
+                        android:layout_height="28dp">
+                    </ImageView>
                     <TextView
                         android:id="@+id/temp_min1"
                         android:text="12° Min"
@@ -276,10 +280,12 @@
                         android:layout_width="150sp"
                         android:layout_height="wrap_content">
                     </TextView>
-                    <Space
+                    <ImageView
+                        android:id="@+id/climateIcon2"
+                        android:src="@drawable/d01"
                         android:layout_width="28dp"
-                        android:layout_height="match_parent">
-                    </Space>
+                        android:layout_height="28dp">
+                    </ImageView>
                     <TextView
                         android:id="@+id/temp_min2"
                         android:text="12° Min"

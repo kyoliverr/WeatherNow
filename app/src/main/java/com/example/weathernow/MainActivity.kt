@@ -18,6 +18,7 @@ import java.util.*
 import java.net.URL
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -28,7 +29,8 @@ import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
-    private val API: String = "9940c6b52513697e07e091ec423f83f4"
+    private val API = BuildConfig.API_KEY
+
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,7 +119,10 @@ class MainActivity : AppCompatActivity() {
             val address = forecastData.getJSONObject("city").getString("name")
             val current = list.getJSONObject(0)
             val currentTemp = current.getJSONObject("main").getDouble("temp").toInt().toString() + "°"
+            val climateState = current.getJSONArray("weather").getJSONObject(0).getInt("id")
             val weatherDescription = current.getJSONArray("weather").getJSONObject(0).getString("description").replaceFirstChar { it.uppercase() }
+
+            Log.e("Valores_de_climateState", "valores: $climateState")
 
             findViewById<TextView>(R.id.address).text = address
             findViewById<TextView>(R.id.temp).text = currentTemp
@@ -125,6 +130,7 @@ class MainActivity : AppCompatActivity() {
 
             //Preparing for "the loop"
             val dateTemps = mutableMapOf<String, MutableList<Double>>()
+            val dateWeatherIcons = mutableMapOf<String, MutableList<Int>>()
 
             //"the first loop"
             for (i in 0 until list.length()) {
@@ -132,11 +138,18 @@ class MainActivity : AppCompatActivity() {
                 val dateTime = item.getString("dt_txt")
                 val date = dateTime.substring(0, 10) // yyyy-MM-dd
                 val temp = item.getJSONObject("main").getDouble("temp")
+                val weatherIcon = item.getJSONArray("weather").getJSONObject(0).getInt("id")
 
                 if (!dateTemps.containsKey(date)) {
                     dateTemps[date] = mutableListOf()
                 }
                 dateTemps[date]?.add(temp)
+
+                if (!dateWeatherIcons.containsKey(date)) {
+                    dateWeatherIcons[date] = mutableListOf()
+                }
+                dateWeatherIcons[date]?.add(weatherIcon)
+
             }
 
             //"the second loop"
@@ -150,18 +163,22 @@ class MainActivity : AppCompatActivity() {
                 val temps = dateTemps[date] ?: continue
                 val min = temps.minOrNull()?.toInt() ?: 0
                 val max = temps.maxOrNull()?.toInt() ?: 0
+                val iconsId = dateWeatherIcons[date] ?: continue
 
                 val minTemp = resources.getIdentifier("min_temp$i", "id", packageName)
                 val maxTemp = resources.getIdentifier("max_temp$i", "id", packageName)
                 val idMin = resources.getIdentifier("temp_min$i", "id", packageName)
                 val idMax = resources.getIdentifier("temp_max$i", "id", packageName)
                 val idDay = resources.getIdentifier("day$i", "id", packageName)
+                val idIcon = resources.getIdentifier("climateIcon$i", "id", packageName)
+                val iconRes = getWeatherIconResource(iconsId)
 
                 findViewById<TextView>(minTemp)?.text = "$min°"
                 findViewById<TextView>(maxTemp)?.text = "/ $max°"
                 findViewById<TextView>(idMin)?.text = "$min° Min"
                 findViewById<TextView>(idMax)?.text = "$max° Max"
                 findViewById<TextView>(idDay)?.text = dateFormat.replaceFirstChar { it.uppercase() }
+                findViewById<ImageView>(idIcon)?.setImageResource(iconRes)
             }
 
             findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
@@ -171,6 +188,21 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Log.e("ForecastError", "Erro ao atualizar UI: ${e.message}", e)
             showError()
+        }
+    }
+
+    private fun getWeatherIconResource(iconsId: List<Int>): Int {
+        return when {
+            iconsId.any { it in 200..232 } -> R.drawable.d07
+            iconsId.any { it in 300..321 || it in 520..531 } -> R.drawable.d05
+            iconsId.any { it in 500..519 } -> R.drawable.d06
+            iconsId.any { it in 600..622 } -> R.drawable.d08
+            iconsId.any { it in 701..781 } -> R.drawable.d09
+            iconsId.any { it == 800 } -> R.drawable.d01
+            iconsId.any { it == 801 } -> R.drawable.d02
+            iconsId.any { it == 802 } -> R.drawable.d03
+            iconsId.any { it in 803..804 } -> R.drawable.d04
+            else -> R.drawable.wind
         }
     }
 
