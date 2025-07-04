@@ -1,0 +1,472 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="25dp"
+    android:theme="@style/AppTheme"
+    android:background="#101116"
+    tools:context=".MainActivity2">
+
+    <RelativeLayout
+        android:id="@+id/mainContainer2"
+        android:visibility="visible"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/daysForecast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/goBackButton"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:background="@drawable/back"
+                android:backgroundTint="#FFF">
+
+            </Button>
+
+            <TextView
+                android:gravity="start|left"
+                android:text="Previsão para 5 dias"
+                android:textSize="20sp"
+                android:layout_marginBottom="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="60sp">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fiveDaysContainer1"
+            android:scrollbars="horizontal"
+            android:layout_below="@id/daysForecast"
+            android:layout_width="900dp"
+            android:weightSum="3"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:fillViewport = "true">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_bg"
+                android:layout_margin="5sp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:text="Hoje"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="40dp">
+                </TextView>
+                <TextView
+                    android:id="@+id/date0"
+                    android:text="15/07"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <TextView
+                    android:id="@+id/status0"
+                    android:text="Nublado"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+                </TextView>
+                <TextView
+                    android:id="@+id/temp_max0"
+                    android:text="20° Max"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/bar"
+                    android:tint="#FFF">
+                </ImageView>
+                <TextView
+                    android:id="@+id/temp_min0"
+                    android:text="12° Min"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:src="@drawable/wind"
+                    android:tint="#FFF">
+                </ImageView>
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="5dp">
+                </Space>
+                <TextView
+                    android:id="@+id/wind0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="5:30am"
+                    android:textSize="16sp">
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/forecast_bg"
+                android:layout_margin="5sp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:text="Amanhã"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="40dp">
+                </TextView>
+                <TextView
+                    android:id="@+id/date1"
+                    android:text="15/07"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <TextView
+                    android:id="@+id/status1"
+                    android:text="Nublado"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+                </TextView>
+                <TextView
+                    android:id="@+id/temp_max1"
+                    android:text="20° Max"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/bar"
+                    android:tint="#FFF">
+                </ImageView>
+                <TextView
+                    android:id="@+id/temp_min1"
+                    android:text="12° Min"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:src="@drawable/wind"
+                    android:tint="#FFF">
+                </ImageView>
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="5dp">
+                </Space>
+                <TextView
+                    android:id="@+id/wind1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="5:30am"
+                    android:textSize="16sp">
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/forecast_bg"
+                android:layout_margin="5sp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:id="@+id/day2"
+                    android:text="Hoje"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="40dp">
+                </TextView>
+                <TextView
+                    android:id="@+id/date2"
+                    android:text="15/07"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <TextView
+                    android:id="@+id/status2"
+                    android:text="Nublado"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+                </TextView>
+                <TextView
+                    android:id="@+id/temp_max2"
+                    android:text="20° Max"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/bar"
+                    android:tint="#FFF">
+                </ImageView>
+                <TextView
+                    android:id="@+id/temp_min2"
+                    android:text="12° Min"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:src="@drawable/wind"
+                    android:tint="#FFF">
+                </ImageView>
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="5dp">
+                </Space>
+                <TextView
+                    android:id="@+id/wind2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="5:30am"
+                    android:textSize="16sp">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fiveDaysContainer2"
+            android:scrollbars="horizontal"
+            android:layout_below="@id/fiveDaysContainer1"
+            android:layout_width="900dp"
+            android:gravity="center"
+            android:weightSum="3"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:fillViewport = "true">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/forecast_bg"
+                android:layout_margin="5sp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:id="@+id/day3"
+                    android:text="Hoje"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="40dp">
+                </TextView>
+                <TextView
+                    android:id="@+id/date3"
+                    android:text="15/07"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <TextView
+                    android:id="@+id/status3"
+                    android:text="Nublado"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+                </TextView>
+                <TextView
+                    android:id="@+id/temp_max3"
+                    android:text="20° Max"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/bar"
+                    android:tint="#FFF">
+                </ImageView>
+                <TextView
+                    android:id="@+id/temp_min3"
+                    android:text="12° Min"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:src="@drawable/wind"
+                    android:tint="#FFF">
+                </ImageView>
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="5dp">
+                </Space>
+
+                <TextView
+                    android:id="@+id/wind3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="5:30am"
+                    android:textSize="16sp">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/forecast_bg"
+                android:layout_margin="5sp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp">
+
+                <TextView
+                    android:id="@+id/day4"
+                    android:text="Hoje"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="40dp">
+                </TextView>
+                <TextView
+                    android:id="@+id/date4"
+                    android:text="15/07"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <TextView
+                    android:id="@+id/status4"
+                    android:text="Nublado"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+                </TextView>
+                <TextView
+                    android:id="@+id/temp_max4"
+                    android:text="20° Max"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:src="@drawable/bar"
+                    android:tint="#FFF">
+                </ImageView>
+                <TextView
+                    android:id="@+id/temp_min4"
+                    android:text="12° Min"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                </TextView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:src="@drawable/wind"
+                    android:tint="#FFF">
+                </ImageView>
+                <Space
+                    android:layout_height="wrap_content"
+                    android:layout_width="5dp">
+                </Space>
+                <TextView
+                    android:id="@+id/wind4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="5:30am"
+                    android:textSize="16sp">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/loader"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ProgressBar>
+    <TextView
+        android:id="@+id/errortext"
+        android:layout_centerInParent="true"
+        android:textSize="15dp"
+        android:text="Something went wrong"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+
+</RelativeLayout>
