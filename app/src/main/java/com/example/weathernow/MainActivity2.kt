@@ -27,7 +27,7 @@ import kotlinx.coroutines.withContext
 
 class MainActivity2 : AppCompatActivity()  {
 
-    private val API: String = "9940c6b52513697e07e091ec423f83f4"
+    private val API: String = "100423194109345"
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
