@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="25dp"
     android:theme="@style/AppTheme"
-    android:background="@drawable/gradient_bg"
+    android:background="@drawable/default_bg"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -241,7 +241,7 @@
                     </TextView>
                     <ImageView
                         android:id="@+id/climateIcon1"
-                        android:src="@drawable/d01"
+                        android:src="@drawable/d04"
                         android:layout_width="28dp"
                         android:layout_height="28dp">
                     </ImageView>
@@ -282,7 +282,7 @@
                     </TextView>
                     <ImageView
                         android:id="@+id/climateIcon2"
-                        android:src="@drawable/d01"
+                        android:src="@drawable/d02"
                         android:layout_width="28dp"
                         android:layout_height="28dp">
                     </ImageView>

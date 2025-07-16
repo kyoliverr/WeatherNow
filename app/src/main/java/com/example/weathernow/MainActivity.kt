@@ -26,11 +26,12 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.core.content.ContextCompat
+import android.graphics.drawable.TransitionDrawable
 
 class MainActivity : AppCompatActivity() {
 
     private val API = BuildConfig.API_KEY
-
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,18 +116,22 @@ class MainActivity : AppCompatActivity() {
         try {
             val forecastData = JSONObject(response)
             val list = forecastData.getJSONArray("list")
-            //Today data
+            //Today data's
             val address = forecastData.getJSONObject("city").getString("name")
             val current = list.getJSONObject(0)
             val currentTemp = current.getJSONObject("main").getDouble("temp").toInt().toString() + "°"
             val climateState = current.getJSONArray("weather").getJSONObject(0).getInt("id")
             val weatherDescription = current.getJSONArray("weather").getJSONObject(0).getString("description").replaceFirstChar { it.uppercase() }
+            val mainContainerBackground = findViewById<RelativeLayout>(R.id.main)
+            val backgroundSwap = getWeatherBackgroundResource(climateState)
 
             Log.e("Valores_de_climateState", "valores: $climateState")
 
             findViewById<TextView>(R.id.address).text = address
             findViewById<TextView>(R.id.temp).text = currentTemp
             findViewById<TextView>(R.id.status).text = weatherDescription
+            backgroundsTransition(mainContainerBackground, backgroundSwap)
+
 
             //Preparing for "the loop"
             val dateTemps = mutableMapOf<String, MutableList<Double>>()
@@ -173,6 +178,8 @@ class MainActivity : AppCompatActivity() {
                 val idIcon = resources.getIdentifier("climateIcon$i", "id", packageName)
                 val iconRes = getWeatherIconResource(iconsId)
 
+                Log.e("IconsID_Log$i", "Icons ID of the DAY: $iconsId")
+
                 findViewById<TextView>(minTemp)?.text = "$min°"
                 findViewById<TextView>(maxTemp)?.text = "/ $max°"
                 findViewById<TextView>(idMin)?.text = "$min° Min"
@@ -191,6 +198,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Get the weather icon based on the date climateState
     private fun getWeatherIconResource(iconsId: List<Int>): Int {
         return when {
             iconsId.any { it in 200..232 } -> R.drawable.d07
@@ -203,6 +211,36 @@ class MainActivity : AppCompatActivity() {
             iconsId.any { it == 802 } -> R.drawable.d03
             iconsId.any { it in 803..804 } -> R.drawable.d04
             else -> R.drawable.wind
+        }
+    }
+
+    //Get the background based on the day climateState
+    private fun getWeatherBackgroundResource(climateState: Int): Int {
+        return when (climateState) {
+            in 200..232 -> R.drawable.d07_bg
+            in 300..321, in 520..531 -> R.drawable.d05_bg
+            in 500..519 -> R.drawable.d06_bg
+            in 600..622 -> R.drawable.d08_bg
+            in 701..781 -> R.drawable.d09_bg
+            800 -> R.drawable.d01_bg
+            801 -> R.drawable.d02_bg
+            802 -> R.drawable.d03_bg
+            in 803..804 -> R.drawable.d04_bg
+            else -> R.drawable.default_bg
+        }
+    }
+
+    //Animation transition between backgrounds
+    private fun backgroundsTransition(mainContainer: RelativeLayout, newBackgroundRes: Int) {
+        val currentBackground = mainContainer.background
+        val newBackground = ContextCompat.getDrawable(this, newBackgroundRes)
+
+        if (currentBackground != null && newBackground != null) {
+            val transition = android.graphics.drawable.TransitionDrawable(arrayOf(currentBackground, newBackground))
+            mainContainer.background = transition
+            transition.startTransition(1000)
+        } else {
+            mainContainer.setBackgroundResource(newBackgroundRes)
         }
     }
 

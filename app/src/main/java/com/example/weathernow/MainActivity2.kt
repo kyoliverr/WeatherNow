@@ -165,6 +165,9 @@ class MainActivity2 : AppCompatActivity()  {
                 val idMax = resources.getIdentifier("temp_max$i", "id", packageName)
                 val idWind = resources.getIdentifier("wind$i", "id", packageName)
 
+                Log.e("clima_frequente" ,
+                    "Dia: $dayFormat ($dateFormat) | Lista: $weathers | mais frequente: $mostFrequentWeather")
+
                 findViewById<TextView>(idDay)?.text = dayFormat.replaceFirstChar { it.uppercase() }
                 findViewById<TextView>(idDate)?.text = dateFormat
                 findViewById<TextView>(idWeather)?.text = mostFrequentWeather

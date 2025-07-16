@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="90"
+                android:endColor="#C7E9EF"
+                android:centerColor="#A4BDBD"
+                android:startColor="#6F7979"
+                android:type="linear">
+            </gradient>
+
+            <!-- Snowy  -->
+        </shape>
+    </item>
+</layer-list>
